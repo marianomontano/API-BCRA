@@ -1,21 +1,32 @@
 ﻿@model IEnumerable<WEB_Dolar.Models.DolarModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dolar Oficial";
 }
 
-<h2>Index</h2>
+<h2>Dolar Oficial</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Búsqueda por fecha
+    </p>
+    <p>
+        Fecha de inicio: <input name="inicio" type="date" />
+        Fecha de fin: <input name="fin" type="date" />
+        <input class="btn btn-info" type="submit" value="Filtrar" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.D)
+            @Html.ActionLink("Fecha", "Index", new { ordenamiento = ViewBag.OrdenPorFecha })
+            @*Html.DisplayNameFor(model => model.D)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.V)
+            @Html.ActionLink("Valor", "Index", new { ordenamiento = ViewBag.OrdenPorValor })
+            @*Html.DisplayNameFor(model => model.V)*@
         </th>
         <th></th>
     </tr>
@@ -27,11 +38,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.V)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }
